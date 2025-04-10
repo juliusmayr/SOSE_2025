@@ -1,4 +1,7 @@
 from my_functions import estimate_max_hr
+from my_functions import calculate_age
+from my_functions import estimate_max_hr 
+
 
 class Person():
     def __init__(self, first_name, last_name):
@@ -9,11 +12,15 @@ class Subject(Person):
     def __init__(self, first_name, last, sex, age):
         super().__init__(first_name, last)
         self.sex = sex  
-        self.__age = age 
+        self.__birthdate = datetime.strptime(age, "%Y-%m-%d").date()
+    
+    def __calculate_age(self):
+        today = date.today()
+        return today.year - self.__birthdate.year - ((today.month, today.day) < (self.__birthdate.month, self.__birthdate.day))
 
     def estimate_max_hr(self, sex, age):
-      """A function that estimates the maximum heart rate of a subject"""
-      return estimate_max_hr(sex, age)
+      age = self.__calculate_age()
+      return estimate_max_hr(age, self.sex)
 
 class Supervisor(Person):
     def __init__(self, first_name, last_name):

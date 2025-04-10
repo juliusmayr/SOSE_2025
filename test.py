@@ -1,5 +1,6 @@
 from my_classes import Subject, Supervisor, Experiment
-
+from my_classes import Person, estimate_max_hr, calculate_age
+from datetime import datetime, date
 if __name__ == "__main__":
 
     # Erstellen eines Leistungstests

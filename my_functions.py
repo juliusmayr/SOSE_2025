@@ -1,11 +1,21 @@
-def estimate_max_hr(age_years : int , sex : str) -> int:
+from datetime import date
+from datetime import datetime
+datetime = datetime.now() 
+
+
+def calculate_age(birthdatee_string: str) -> int:
+    birthdate = datetime.strptime(birthdatee_string, "%Y-%m-%d").date()
+    today = date.today()
+    return today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+
+def estimate_max_hr(age_year : int , sex : str) -> int:
   """
   See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4124545/ Titel anhand dieser PMC-ID in Citavi-Projekt übernehmen for different formulas
   """
   if sex == "male":
-    max_hr_bpm =  223 - 0.9 * age_years
+    max_hr_bpm =  223 - 0.9 * age_year
   elif sex == "female":
-    max_hr_bpm = 226 - 1.0 *  age_years
+    max_hr_bpm = 226 - 1.0 *  age_year
   else:
     # der input() öffnet ein Eingabefenster für den Nutzer und speichert die Eingabe
     max_hr_bpm  = input("Enter maximum heart rate:")
